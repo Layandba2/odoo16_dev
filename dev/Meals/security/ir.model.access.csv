@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+Meals.access_meal_order,access_meal_order,Meals.model_meal_order,base.group_user,1,1,1,1
+Meals.access_meal_supplier,access_meal_supplier,Meals.model_meal_supplier,base.group_user,1,1,1,1
+Meals.access_meal_location,access_meal_location,Meals.model_meal_location,base.group_user,1,1,1,1
+Meals.access_meal_rotation,access_meal_rotation,Meals.model_meal_rotation,base.group_user,1,1,1,1
+Meals.access_meal_sub_location,access_meal_sub_location,Meals.model_meal_sub_location,base.group_user,1,1,1,1
+Meals.access_meal_order_machine,access_meal_order_machine,Meals.model_meal_order_machine,base.group_user,1,1,1,1
+Meals.access_meal_product,access_meal_product,Meals.model_meal_product,base.group_user,1,1,1,1
+Meals.access_breakfast_order,access_breakfast_order,Meals.model_breakfast_order,base.group_user,1,1,1,1
+Meals.access_breakfast_order_line,access_breakfast_order_line,Meals.model_breakfast_order_line,base.group_user,1,1,1,1
+Meals.access_breakfast_invoice,access_breakfast_invoice,Meals.model_breakfast_invoice,base.group_user,1,1,1,1
+Meals.access_meal_invoice_line,access_meal_invoice_line,Meals.model_meal_invoice_line,base.group_user,1,1,1,1

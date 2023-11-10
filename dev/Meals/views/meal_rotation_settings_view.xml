@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <record id="meal_rotation_view_tree" model="ir.ui.view">
+        <field name="name">meal.rotation.view.tree</field>
+        <field name="model">meal.rotation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="location_id"/>
+                <field name="supplier_id"/>
+                <field name="rotation_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="meal_rotation_view_form" model="ir.ui.view">
+        <field name="name">meal.rotation.view.form</field>
+        <field name="model">meal.rotation</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="location_id" />
+                            <field name="supplier_id" />
+                            <field name="rotation_date" />
+                        </group>
+                    </group>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <record id="meal_rotation_view_search" model="ir.ui.view">
+        <field name="name">meal.rotation.view.search</field>
+        <field name="model">meal.rotation</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="rotation_date"/>
+                <separator/>
+
+            </search>
+        </field>
+    </record>
+
+    <record id="meal_rotation_action" model="ir.actions.act_window">
+        <field name="name">Meal Rotations</field>
+        <field name="res_model">meal.rotation</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="meal_rotation_view_search"/>
+    </record>
+
+    <menuitem name="Meal Rotation"
+              id="meal_rotation_menu"
+              parent="menu_meal_configuration"
+              action="meal_rotation_action"
+              sequence="10">
+    </menuitem>
+</odoo>

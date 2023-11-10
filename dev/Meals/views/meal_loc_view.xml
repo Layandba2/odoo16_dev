@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="meal_loc_view_tree" model="ir.ui.view">
+        <field name="name">meal.location.view.tree</field>
+        <field name="model">meal.location</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="location_name"/>
+                <field name="location_address"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="meal_location_view_form" model="ir.ui.view">
+        <field name="name">meal.location.view.form</field>
+        <field name="model">meal.location</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="location_name"/>
+                            <field name="location_address"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Sub Location" name="sub_location">
+                            <field name="sub_location_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="sub_location_name"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <record id="meal_location_view_search" model="ir.ui.view">
+        <field name="name">meal.location.view.search</field>
+        <field name="model">meal.location</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="location_name"/>
+                <separator/>
+            </search>
+        </field>
+    </record>
+
+    <record id="meal_location_action" model="ir.actions.act_window">
+        <field name="name">Locations</field>
+        <field name="res_model">meal.location</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="meal_location_view_search"/>
+        <field name="help" type="html">
+            <!-- TODO: better help message -->
+            <p class="o_view_nocontent_smiling_face">
+                To see some locations, create one using the create button
+            </p>
+        </field>
+    </record>
+
+    <menuitem name="Locations"
+              id="meal_loc_menu"
+              parent="menu_meal_configuration"
+              action="meal_location_action"
+              sequence="100">
+    </menuitem>
+</odoo>

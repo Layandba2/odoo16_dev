@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="meal_order_machine_view_tree" model="ir.ui.view">
+        <field name="name">meal.order.machine.view.tree</field>
+        <field name="model">meal.order.machine</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="sensor_id"/>
+                <field name="location_id"/>
+                <field name="sub_location_id"/>
+                <field name="is_reserved"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="meal_order_machine_view_form" model="ir.ui.view">
+        <field name="name">meal.order.machine.view.form</field>
+        <field name="model">meal.order.machine</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="sensor_id"/>
+                            <field name="location_id"/>
+                            <field name="sub_location_id"/>
+                            <field name="is_reserved"/>
+                        </group>
+                    </group>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <record id="meal_order_machine_view_search" model="ir.ui.view">
+        <field name="name">meal.order.machine.view.search</field>
+        <field name="model">meal.order.machine</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <separator/>
+            </search>
+        </field>
+    </record>
+
+    <record id="meal_order_machine_action" model="ir.actions.act_window">
+        <field name="name">Finger Machines</field>
+        <field name="res_model">meal.order.machine</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="meal_order_machine_view_search"/>
+    </record>
+s
+    <menuitem name="Finger Machines"
+              id="meal_order_machine_menu"
+              parent="menu_meal_configuration"
+              action="meal_order_machine_action"
+              sequence="150">
+    </menuitem>
+</odoo>

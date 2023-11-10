@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id='menu_meal'
+              name='Meal'
+              sequence="10">
+    </menuitem>
+
+    <menuitem name="Configuration"
+              id="menu_meal_configuration"
+              parent="menu_meal"
+              sequence="10">
+    </menuitem>
+
+    <menuitem name="Manager"
+              id="menu_meal_manager"
+              parent="menu_meal"
+              sequence="20">
+    </menuitem>
+
+    <menuitem name="Product"
+              id="menu_meal_products"
+              parent="menu_meal"
+              sequence="30">
+    </menuitem>
+
+
+</odoo>

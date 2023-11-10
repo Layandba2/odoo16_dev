@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="meal_breakfast_invoice" model="ir.actions.report">
+         <field name="name">Breakfast Invoice</field>
+         <field name="model">breakfast.invoice</field>
+         <field name="report_type">qweb-pdf</field>
+         <field name="report_name">Meals.meal_breakfast_invoice_report</field>
+         <field name="report_file">Meals.meal_breakfast_invoice_report</field>
+         <field name="binding_model_id" ref="model_breakfast_invoice"/>
+         <field name="binding_type">report</field>
+    </record>
+</odoo>

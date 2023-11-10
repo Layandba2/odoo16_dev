@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <record id="meal_supplier_view_tree" model="ir.ui.view">
+        <field name="name">meal.supplier.view.tree</field>
+        <field name="model">meal.supplier</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="machine_id"/>
+                <field name="phone" class="o_force_ltr"/>
+                <field name="email"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="meal_supplier_view_form" model="ir.ui.view">
+        <field name="name">meal.supplier.view.form</field>
+        <field name="model">meal.supplier</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+
+                    <div class="oe_title">
+                        <label for="name" string="Supplier Name"/>
+                        <h1><field name="name" required="1" placeholder="e.g. Sarath Kumara"/></h1>
+                    </div>
+
+                    <group>
+                        <group>
+                            <field name="machine_id" domain="[('is_reserved', '=', False)]"/>
+                            <label for="street" string="Address"/>
+                            <div class="o_address_format">
+                                <field name="street" placeholder="Street..." class="o_address_street"/>
+                                <field name="street2" placeholder="Street 2..." class="o_address_street"/>
+                                <field name="city" placeholder="City" class="o_address_city"/>
+                            </div>
+                        </group>
+                        <group>
+                            <field name="email" />
+                            <field name="phone" class="o_force_ltr"/>
+                            <field name="is_active" />
+                        </group>
+                    </group>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <record id="meal_supplier_view_search" model="ir.ui.view">
+        <field name="name">meal.supplier.view.search</field>
+        <field name="model">meal.supplier</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="machine_id"/>
+                <separator/>
+                <filter string="Archived" name="inactive" domain="[('is_active', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="meal_supplier_action" model="ir.actions.act_window">
+        <field name="name">Suppliers</field>
+        <field name="res_model">meal.supplier</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="meal_supplier_view_search"/>
+    </record>
+
+    <menuitem name="Suppliers"
+              id="meal_supplier_menu"
+              parent="menu_meal_configuration"
+              action="meal_supplier_action"
+              sequence="50">
+    </menuitem>
+</odoo>

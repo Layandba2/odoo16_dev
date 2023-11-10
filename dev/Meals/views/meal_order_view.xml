@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_meal_order_import" model="ir.actions.act_window">
+        <field name="name">Import Today Orders</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">meal.order</field>
+        <field name="domain">[]</field>
+
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="Meals.meal_order_view_tree"/>
+        <field name="binding_model_id" ref="model_meal_order" />
+    </record>
+    <record id="meal_order_view_search" model="ir.ui.view">
+        <field name="name">meal.order.search</field>
+        <field name="model">meal.order</field>
+        <field name="arch" type="xml">
+            <search string="Search">
+                <group expand="0" string="Group By">
+                    <filter name="group_by_supplier" string="Vendor" context="{'group_by': 'supplier_id'}"/>
+                    <filter name="group_by_date" string="Order Date" context="{'group_by': 'order_date_time'}"
+                            help="Vendor Orders by Date"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="meal_order_view_tree" model="ir.ui.view">
+        <field name="name">meal.order.tree</field>
+        <field name="model">meal.order</field>
+        <field name="arch" type="xml">
+
+            <tree string="Order lines Tree" create="true" edit="false" class="o_meal_list" expand="1">
+                <field name='order_date_time'/>
+                <field name='employee_id'/>
+                <field name='supplier_id'/>
+                <field name="location_id"/>
+                <field name="sub_location_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="meal_order_form_view" model="ir.ui.view">
+        <field name="name">meal.order.view.form</field>
+        <field name="model">meal.order</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+
+                            <button name="button_import_xlsx_contacts" string="Import" type="object"
+                                    class="btn-primary"/>
+                            <button string="Cancel" class="oe_link" special="cancel"/>
+
+                             <field name="employee_id"/>
+                            <field name="order_date_time"/>
+                            <field name="supplier_id"/>
+                            <field name="location_id"/>
+                            <field name="sub_location_id"/>
+
+                        </group>
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="meal_order_view_pivot" model="ir.ui.view">
+        <field name="name">meal.order.pivot</field>
+        <field name="model">meal.order</field>
+        <field name="arch" type="xml">
+            <pivot sample="1">
+                <field name="order_date_time" type="col"/>
+                <field name="supplier_id" type="row"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="meal_order_view_graph" model="ir.ui.view">
+        <field name="name">meal.order.graph</field>
+        <field name="model">meal.order</field>
+        <field name="arch" type="xml">
+            <graph sample="1">
+                <field name="supplier_id"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="meal_order_action" model="ir.actions.act_window">
+        <field name="name">My Orders</field>
+        <field name="res_model">meal.order</field>
+        <field name="view_mode">tree,kanban,pivot,form</field>
+        <field name="search_view_id" ref="meal_order_view_search"/>
+        <field name="context">{"search_default_is_mine":1, "search_default_group_by_date": 1, 'show_reorder_button':
+            True}
+        </field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">
+                No previous order found
+            </p>
+            <p>
+                There is no previous order recorded. Click on "My meal" and then create a new meal order.
+            </p>
+        </field>
+    </record>
+
+    <record id="meal_order_action_by_supplier" model="ir.actions.act_window">
+        <field name="name">Today's Orders</field>
+        <field name="res_model">meal.order</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="search_view_id" ref="meal_order_view_search"/>
+        <field name="context">{"search_default_group_by_supplier":1, "search_default_date_filter":1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">
+                Nothing to order today
+            </p>
+            <p>
+                Here you can see today's orders grouped by vendors.
+            </p>
+        </field>
+    </record>
+
+    <menuitem name="Lunch Orders"
+              id="meal_location_menu"
+              parent="menu_meal_manager"
+              action="meal_order_action"
+              sequence="10">
+    </menuitem>
+
+</odoo>
